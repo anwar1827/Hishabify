@@ -1,27 +1,20 @@
 <?php
-require_once("db.php"); // Database connection
+require_once("includes/session_check.php");
+$required_role = 'manager';
+require_once("includes/role_guard.php");
+require_once("db.php");
 
-// Collect form data
-$emp_id = $_POST['emp_id'];
-$prod_id = $_POST['prod_id'];
-$mgr_id = $_POST['mgr_id'];
-$br_id = $_POST['br_id'];
-$cust_name = $_POST['cust_name'];
-$cust_contact = $_POST['cust_contact'];
-$qty = $_POST['qty'];
-$discount = $_POST['discount'];
-$method = $_POST['method'];
+$manager_id = $_SESSION['user_id'];
+$customer_name = $_POST['customer_name'];
+$customer_contact = $_POST['customer_contact'];
+$product_id = $_POST['product_id'];
+$employee_id = $_POST['employee_id'];
 
-// Procedure call
-$stmt = $conn->prepare("CALL insert_sale(?, ?, ?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("iiiissids", $emp_id, $prod_id, $mgr_id, $br_id, $cust_name, $cust_contact, $qty, $discount, $method);
+// Insert Sale
+$stmt = $conn->prepare("CALL insert_sale(?, ?, ?, ?, ?)");
+$stmt->bind_param("iiiss", $employee_id, $product_id, $manager_id, $customer_name, $customer_contact);
+$stmt->execute();
 
-if ($stmt->execute()) {
-    echo "✅ Sale successfully inserted.";
-} else {
-    echo "❌ Error: " . $stmt->error;
-}
+echo "✅ Sale recorded successfully.";
+echo "<br><a href='record_sale.php'>🔁 Sell Again</a>";
 
-$stmt->close();
-$conn->close();
-?>
