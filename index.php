@@ -1,9 +1,38 @@
-<h1>Hishabify Admin Panel</h1>
-<ul>
-  <li><a href="views/sale_form.php">Add Sale</a></li>
-  <li><a href="views/restock_form.php">Restock Product</a></li>
-  <li><a href="views/report_page.php">Monthly Report</a></li>
-  <li><a href="views/dashboard.php">Top Employees</a></li>
-  <li><a href="views/category_product_report.php">Product by Category</a></li>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Hishabify</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      background: #f9f9f9;
+    }
+    h1 { font-size: 32px; }
+    p { font-size: 18px; margin-bottom: 40px; }
+    .login-btn {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .login-btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
 
-</ul>
+  <h1>📱 Welcome to Hishabify</h1>
+  <p>Your smart mobile shop management system.</p>
+
+  <a class="login-btn" href="login.php">🔐 Login as Manager or Owner</a>
+
+</body>
+</html>

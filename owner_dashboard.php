@@ -14,7 +14,7 @@ require_once("includes/role_guard.php");
   <p>You have successfully logged in.</p>
 
   <ul>
-    <li><a href="view_sales.php">📊 View Sales</a></li>
+    <li><a href="owner_sales_report.php">📊 View Sales</a></li>
     <li><a href="view_login_log.php">🧾 View Login Logs</a></li>
     <li><a href="logout.php">🚪 Logout</a></li>
   </ul>
