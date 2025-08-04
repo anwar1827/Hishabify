@@ -16,6 +16,7 @@ $employees = $conn->query("SELECT * FROM employee WHERE manager_id = $manager_id
 <html>
 <head>
   <title>🛒 New Sale</title>
+  <link rel="stylesheet" href="assets/css/style.css">
   <style>
     body { font-family: Arial; padding: 20px; }
     input, select { padding: 6px; margin: 5px; }
@@ -23,6 +24,7 @@ $employees = $conn->query("SELECT * FROM employee WHERE manager_id = $manager_id
     th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
     .btn { padding: 6px 12px; }
   </style>
+
   <script>
     function addRow() {
       const row = document.querySelector("#row_template").cloneNode(true);
@@ -98,7 +100,7 @@ $employees = $conn->query("SELECT * FROM employee WHERE manager_id = $manager_id
   </tr>
 </table>
 
-<br><a href="manager_dashboard.php">⬅️ Back to Dashboard</a>
-
+<br><a href="manager_dashboard.php" style="text-decoration:none; background:#007bff; color:white; padding:8px 16px; border-radius:5px;">⬅️ Back to Dashboard</a>
+<script src="assets/js/script.js"></script>
 </body>
 </html>

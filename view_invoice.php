@@ -96,7 +96,7 @@ $items = $conn->query("
 
 <br><br>
 <button onclick="window.print()" class="btn">🖨️ Print</button>
-<a href="sale_history.php" class="btn" style="background:#007bff;">⬅️ Back</a>
-
+<a href="sale_history.php" class="btn" style="background:#007bff;">⬅️ Back Button For Manager</a>
+<a href="owner_sales_report.php" class="btn" style="background:#007bff;">⬅️ Back Button For Owner</a>
 </body>
 </html>

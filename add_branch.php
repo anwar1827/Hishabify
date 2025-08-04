@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
   <title>➕ Add Branch</title>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
   <h2>➕ Add New Branch</h2>
@@ -48,5 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="submit" value="➕ Add Branch">
   </form>
   <br><a href="owner_dashboard.php">⬅️ Back to Dashboard</a>
+  <script src="assets/js/script.js"></script>
 </body>
 </html>

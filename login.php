@@ -2,12 +2,24 @@
 <html>
 <head>
   <title>Login - Hishabify</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+     <style>
+    body { font-family: Arial; padding: 20px; }
+    form { max-width: 400px; margin: auto; }
+    input, select { width: 100%; padding: 8px; margin: 10px 0; }
+    .btn { padding: 10px 15px; background: #007bff; color: white; border: none; cursor: pointer; }
+  </style>
     
-
+<h1>Login</h1>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    form { max-width: 400px; margin: auto; }
+    input, select { width: 100%; padding: 8px; margin: 10px 0; }
+    .btn { padding: 10px 15px; background: #007bff; color: white; border: none; cursor: pointer; }
+  </style>
 </head>
 <body>
-  <h2>Login</h2>
+  
   <form action="authenticate.php" method="POST">
     <label>Email:</label><br>
     <input type="email" name="email" required><br><br>
@@ -20,6 +32,6 @@
     </select><br><br>
     <input type="submit" value="Login">
   </form>
-  <script src="assets/js/script.js"></script>
+
 </body>
 </html>

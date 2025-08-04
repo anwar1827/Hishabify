@@ -11,16 +11,19 @@ $branches = $conn->query("SELECT * FROM branch WHERE owner_id = " . $_SESSION['u
 <html>
 <head>
   <title>🏢 All Branches</title>
+   <link rel="stylesheet" href="assets/css/style.css">
   <style>
-    table { border-collapse: collapse; width: 100%; }
-    th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
-    .success { color: green; }
+    body { font-family: Arial; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+    .btn { padding: 5px 10px; text-decoration: none; background: #28a745; color: white; border-radius: 4px; }
+    .btn-danger { background: #dc3545; }
   </style>
 </head>
 <body>
 
-<h2>🏢 Branch List</h2>
-
+<h1>🏢 Branch List</h1>
+<h2><a href="add_branch.php"class="btn">➕ Add New Branch</a> <br> </h2>
 <?php
 if (isset($_GET['added'])) echo "<p class='success'>✅ Branch added successfully!</p>";
 if (isset($_GET['updated'])) echo "<p class='success'>✅ Branch updated successfully!</p>";
@@ -40,6 +43,7 @@ if (isset($_GET['deleted'])) echo "<p class='success'>🗑️ Branch deleted suc
   </thead>
   <tbody>
     <?php while($row = $branches->fetch_assoc()): ?>
+   
       <tr>
         <td><?= $row['branch_id'] ?></td>
         <td><?= htmlspecialchars($row['branch_name']) ?></td>
@@ -56,8 +60,8 @@ if (isset($_GET['deleted'])) echo "<p class='success'>🗑️ Branch deleted suc
 </table>
 
 <br>
-<a href="add_branch.php">➕ Add New Branch</a> | 
-<a href="owner_dashboard.php">⬅️ Back to Dashboard</a>
-
+ 
+<br><a href="owner_dashboard.php"class="btn" style="text-decoration:none; background:#007bff; color:white; padding:8px 16px; border-radius:5px;">⬅️ Back to Dashboard</a>
+ <script src="assets/js/script.js"></script>
 </body>
 </html>

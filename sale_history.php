@@ -66,7 +66,7 @@ $sales = $conn->query("
 
 </table>
 
-<br><a href="manager_dashboard.php">⬅️ Back to Dashboard</a>
+<br><a href="manager_dashboard.php" style="text-decoration:none; background:#007bff; color:white; padding:8px 16px; border-radius:5px;">⬅️ Back to Dashboard</a>
 
 </body>
 </html>
