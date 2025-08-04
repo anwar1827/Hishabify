@@ -2,6 +2,9 @@
 <html>
 <head>
   <title>Login - Hishabify</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+
 </head>
 <body>
   <h2>Login</h2>
@@ -17,5 +20,6 @@
     </select><br><br>
     <input type="submit" value="Login">
   </form>
+  <script src="assets/js/script.js"></script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Welcome to Hishabify</title>
+  <link rel="stylesheet" href="assets/css/style.css">
   <style>
     body {
       font-family: Arial, sans-serif;

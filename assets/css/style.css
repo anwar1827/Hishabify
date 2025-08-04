@@ -1,11 +1,88 @@
-ul {
-  list-style: none;
-  padding-left: 15px;
+:root {
+  --primary-color: #4CAF50;
+  --accent-color: #FF9800;
+  --bg-color: #f9f9f9;
+  --text-color: #333;
+  --header-bg: #e8f5e9;
+  --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  --radius: 10px;
 }
-ul li {
-  margin-bottom: 5px;
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-color);
+  font-family: 'Segoe UI', sans-serif;
+  color: var(--text-color);
 }
-strong {
-  color: #0a58ca;
-  font-size: 18px;
+
+h1, h2, h3 {
+  color: var(--primary-color);
+  text-align: center;
+  margin-top: 20px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Form styling */
+form {
+  background: white;
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+input, select, button, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  box-sizing: border-box;
+}
+
+button, .btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover, .btn:hover {
+  background: var(--accent-color);
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  margin-top: 20px;
+  box-shadow: var(--shadow);
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+th {
+  background: var(--header-bg);
+}
+
+/* Back button */
+.back-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  margin-top: 20px;
+  background: #ccc;
+  text-decoration: none;
+  color: #000;
+  border-radius: var(--radius);
 }

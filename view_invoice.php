@@ -1,7 +1,15 @@
 <?php
 require_once("includes/session_check.php");
-$required_role = 'manager';
-require_once("includes/role_guard.php");
+
+//session_start(); 
+
+// Allow both manager and owner
+$role = $_SESSION['user_type'] ?? '';
+if (!in_array($role, ['manager', 'owner'])) {
+    echo "❌ Unauthorized Access!";
+    exit;
+}
+
 require_once("db.php");
 
 $sale_id = $_GET['sale_id'] ?? 0;

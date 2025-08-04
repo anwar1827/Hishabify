@@ -40,6 +40,8 @@ $sales = $conn->query($query);
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
         select, button { padding: 6px; margin-right: 10px; }
+        .btn { padding: 6px 12px; background: #28a745; color: white; text-decoration: none; border-radius: 4px; }
+        .btn:hover { background: #218838; }
     </style>
 </head>
 <body>
@@ -72,6 +74,7 @@ $sales = $conn->query($query);
             <th>Phone</th>
             <th>Discount (৳)</th>
             <th>Total Price (৳)</th>
+            <th>Details</th>
         </tr>
     </thead>
     <tbody>
@@ -86,11 +89,11 @@ $sales = $conn->query($query);
                     <td><?= $row['customer_phone'] ?></td>
                     <td><?= $row['discount_applied'] ?>৳</td>
                     <td><?= $row['total_price'] ?>৳</td>
-                    
+                    <td><a href="view_invoice.php?sale_id=<?= $row['sale_id'] ?>" class="btn">🧾 View</a></td>
                 </tr>
             <?php endwhile; ?>
         <?php else: ?>
-            <tr><td colspan="8">❌ No sales found for this branch.</td></tr>
+            <tr><td colspan="9">❌ No sales found for this branch.</td></tr>
         <?php endif; ?>
     </tbody>
 </table>
