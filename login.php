@@ -20,7 +20,7 @@
 </head>
 <body>
   
-  <form action="authenticate.php" method="POST">
+  <form method="POST" action="authenticate.php">
     <label>Email:</label><br>
     <input type="email" name="email" required><br><br>
     <label>Password:</label><br>

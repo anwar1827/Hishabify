@@ -78,9 +78,19 @@ $update_sale = $conn->prepare("UPDATE sale SET total_price = ?, discount_applied
 $update_sale->bind_param("dii", $grand_total, $total_discount, $sale_id);
 $update_sale->execute();
 
-// Step 6: Update total sales count
-$conn->query("UPDATE employee SET total_sales = total_sales + 1 WHERE employee_id = $employee_id");
-$conn->query("UPDATE manager SET total_sales = total_sales + 1 WHERE manager_id = $manager_id");
+// Step 6: Insert Payment Info
+$payment_method = $_POST['payment_method'];
+$amount_paid = $_POST['amount_paid'];
+
+$insert_payment = $conn->prepare("INSERT INTO payment (sale_id, method, amount) VALUES (?, ?, ?)");
+$insert_payment->bind_param("isd", $sale_id, $payment_method, $amount_paid);
+$insert_payment->execute();
+
+// Step 7: Update total sales count
+// $total_quantity = array_sum($quantities);
+// $conn->query("UPDATE employee SET total_sales = total_sales + $total_quantity WHERE employee_id = $employee_id");
+// $conn->query("UPDATE manager SET total_sales = total_sales + $total_quantity WHERE manager_id = $manager_id");
+
 
 // Done
 header("Location: record_sale.php?success=1");

@@ -16,13 +16,105 @@ $employees = $conn->query("SELECT * FROM employee WHERE manager_id = $manager_id
 <html>
 <head>
   <title>🛒 New Sale</title>
-  <link rel="stylesheet" href="assets/css/style.css">
   <style>
-    body { font-family: Arial; padding: 20px; }
-    input, select { padding: 6px; margin: 5px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
-    .btn { padding: 6px 12px; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+
+    h2, h3 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 15px;
+      color: #444;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: #fff;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f1f1f1;
+    }
+
+    .btn {
+      background: #28a745;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      font-size: 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #218838;
+    }
+
+    .btn-secondary {
+      background: #007bff;
+    }
+
+    .btn-secondary:hover {
+      background: #0069d9;
+    }
+
+    .btn-add {
+      display: block;
+      margin: 20px auto;
+      background: #ffc107;
+      color: #212529;
+    }
+
+    .form-section {
+      margin-bottom: 30px;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    a.btn-secondary {
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+    }
   </style>
 
   <script>
@@ -43,35 +135,71 @@ $employees = $conn->query("SELECT * FROM employee WHERE manager_id = $manager_id
 </head>
 <body>
 
-<h2>🛒 New Sale</h2>
+<div class="container">
+  <h2>🛒 New Sale Entry</h2>
 
-<form method="POST" action="insert_sale.php">
-  <label>Customer Name: <input type="text" name="customer_name" required></label><br>
-  <label>Contact: <input type="text" name="customer_phone" required></label><br>
-  <label>Address: <input type="text" name="customer_address" required></label><br>
+  <form method="POST" action="insert_sale.php">
+    <div class="form-section">
+      <label>Customer Name:
+        <input type="text" name="customer_name" required>
+      </label>
+      <label>Contact:
+        <input type="text" name="customer_phone" required>
+      </label>
+      <label>Address:
+        <input type="text" name="customer_address" required>
+      </label>
+      <label>👨‍💼 Employee:
+        <select name="employee_id" required>
+          <option value="">-- Select Employee --</option>
+          <?php while($emp = $employees->fetch_assoc()): ?>
+            <option value="<?= $emp['employee_id'] ?>"><?= $emp['name'] ?> (<?= $emp['designation'] ?>)</option>
+          <?php endwhile; ?>
+        </select>
+      </label>
+    </div>
 
-  <label>👨‍💼 Employee:
-    <select name="employee_id" required>
-      <option value="">-- Select Employee --</option>
-      <?php while($emp = $employees->fetch_assoc()): ?>
-        <option value="<?= $emp['employee_id'] ?>"><?= $emp['name'] ?> (<?= $emp['designation'] ?>)</option>
-      <?php endwhile; ?>
-    </select>
-  </label>
+    <div class="form-section">
+      <h3>🧾 Products</h3>
+      <table>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Warranty (months)</th>
+            <th>Quantity</th>
+            <th>Discount</th>
+          </tr>
+        <tbody id="product_rows"></tbody>
+      </table>
+     <button type="button" class="btn btn-add" onclick="addRow()">➕ Add Product</button>
+    </div>
 
-  <h3>🧾 Products</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Product</th><th>Price</th><th>Warranty (months)</th><th>Quantity</th><th>Discount</th>
-      </tr>
-    </thead>
-    <tbody id="product_rows"></tbody>
-  </table>
+    <div class="form-section">
+      <h3>💵 Payment Info</h3>
+      <label>Payment Method:
+        <select name="payment_method" required>
+          <option value="">-- Select Method --</option>
+          <option value="Cash">Cash</option>
+          <option value="Bkash">Bkash</option>
+          <option value="Nagad">Nagad</option>
+          <option value="Bank">Bank</option>
+        </select>
+      </label>
+      <label>Amount Paid:
+        <input type="number" step="0.01" name="amount_paid" required>
+      </label>
+    </div>
 
-  <button type="button" class="btn" onclick="addRow()">➕ Add Product</button><br><br>
-  <button type="submit" class="btn">✅ Confirm Sale</button>
-</form>
+    <div class="center">
+      <button type="submit" class="btn">✅ Confirm Sale</button>
+    </div>
+  </form>
+
+  <br>
+  <div class="center">
+    <a href="manager_dashboard.php" class="btn btn-secondary">⬅️ Back to Dashboard</a>
+  </div>
+</div>
 
 <!-- 🔁 Hidden row template -->
 <table style="display:none;">
@@ -100,7 +228,6 @@ $employees = $conn->query("SELECT * FROM employee WHERE manager_id = $manager_id
   </tr>
 </table>
 
-<br><a href="manager_dashboard.php" style="text-decoration:none; background:#007bff; color:white; padding:8px 16px; border-radius:5px;">⬅️ Back to Dashboard</a>
 <script src="assets/js/script.js"></script>
 </body>
 </html>

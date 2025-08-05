@@ -1,12 +1,14 @@
 <?php
 $host = "localhost";
 $user = "root";
-$pass = "";
-$db = "Hishabify_DB"; // তোমার DB নাম যদি আলাদা হয়, সেটাও ঠিক করো
+$password = "";
+$database = "hishabify_db";
 
-$conn = new mysqli($host, $user, $pass, $db);
+// Connection
+$conn = new mysqli($host, $user, $password, $database);
 
+// Check
 if ($conn->connect_error) {
-    die("❌ DB Connection failed: " . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
 ?>
