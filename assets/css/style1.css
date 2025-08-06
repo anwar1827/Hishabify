@@ -1,0 +1,262 @@
+/* ===== Global Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f7fa;
+}
+
+/* ===== Header ===== */
+ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  justify-content: center; /* center align horizontally */
+  padding: 0;
+  margin: 20px 0;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: 0.3s ease;
+}
+
+ul li a:hover {
+  background-color: #f0f0f0;
+  color: #007bff;
+}
+
+header {
+  background-color: #73bf27;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navbar a:hover {
+  color: #f1c40f;
+}
+
+/* Login Dropdown */
+.login-dropdown {
+  position: relative;
+}
+
+.login-dropdown button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.login-dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  color: black;
+  min-width: 150px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 1001;
+}
+
+.login-dropdown-content a {
+  color: black;
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+}
+
+.login-dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.login-dropdown:hover .login-dropdown-content {
+  display: block;
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #74b9ff, #9ae309);
+  color: white;
+}
+
+.hero h1 {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.hero .cta-btn {
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #0984e3;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.hero .cta-btn:hover {
+  background-color: #f1c40f;
+  color: black;
+}
+
+/* ===== Features Section ===== */
+.features-section {
+  text-align: center;
+  padding: 60px 20px;
+  background: #fff;
+}
+
+.features-section h2 {
+  font-size: 2em;
+  margin-bottom: 40px;
+  align-items: center; 
+}
+
+.feature-boxes {
+  display: flex;
+  flex-direction: column;
+   
+  gap: 20px;
+}
+
+.feature {
+  background: #f8f8f8;
+  padding: 15px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  width: 300px;
+  font-size: 1.1em;
+  transition: transform 0.3s ease;
+}
+
+.feature:hover {
+  transform: scale(1.05);
+}
+
+
+
+/* ===== Chart Section ===== */
+.chart-section {
+  padding: 60px 20px;
+  background-color: #ecf0f1;
+  text-align: center;
+}
+
+.chart-section h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+canvas {
+  max-width: 600px;
+  margin: auto;
+}
+
+/* ===== About Us Section ===== */
+.about {
+  padding: 60px 20px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.about p {
+  max-width: 700px;
+  margin: auto;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* ===== Footer ===== */
+footer {
+  background-color: #0a3d62;
+  color: white;
+  text-align: center;
+  padding: 25px 10px;
+}
+
+footer .social-icons a {
+  color: white;
+  margin: 0 10px;
+  font-size: 20px;
+}
+
+footer .social-icons a:hover {
+  color: #f1c40f;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .navbar {
+    display: none;
+    flex-direction: column;
+    background-color: #0a3d62;
+    position: absolute;
+    top: 60px;
+    right: 30px;
+    width: 200px;
+    padding: 10px;
+  }
+
+  .navbar.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    font-size: 24px;
+  }
+
+  .feature-list {
+    flex-direction: column;
+    align-items: center;
+  }
+}

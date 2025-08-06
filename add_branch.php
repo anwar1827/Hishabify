@@ -4,7 +4,7 @@ $required_role = 'owner';
 require_once("includes/role_guard.php");
 require_once("db.php");
 
-// Insert Handle
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['branch_name'];
     $location = $_POST['location'];
