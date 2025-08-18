@@ -6,8 +6,14 @@ require_once("db.php");
 
 // ✅ Get manager's branch ID
 $manager_id = $_SESSION['user_id'];
-$branch_result = $conn->query("SELECT branch_id FROM manager WHERE manager_id = $manager_id");
-$branch_id = $branch_result->fetch_assoc()['branch_id'];
+$stmt = $conn->prepare("CALL GetManagerBranch(?, @branch_id)");
+$stmt->bind_param("i", $manager_id);
+$stmt->execute();
+
+$result = $conn->query("SELECT @branch_id AS branch_id");
+$row = $result->fetch_assoc();
+$branch_id = $row['branch_id'];
+
 
 // ✅ Get POST data
 $name = $_POST['name'];
@@ -20,10 +26,10 @@ $warranty = $_POST['warranty_months'];
 $description = $_POST['description'];
 
 // ✅ Insert Query
-$stmt = $conn->prepare("INSERT INTO product (name, brand, model, price, stock, branch_id, category_id, warranty_months, description) 
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt = $conn->prepare("CALL InsertProduct(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 $stmt->bind_param("sssiiiiss", $name, $brand, $model, $price, $stock, $branch_id, $category_id, $warranty, $description);
 $stmt->execute();
+
 
 header("Location: manage_products.php");
 ?>

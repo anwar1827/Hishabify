@@ -13,9 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $close = $_POST['close_time'];
     $owner_id = $_SESSION['user_id'];
 
-    $stmt = $conn->prepare("INSERT INTO branch (branch_name, location, contact_number, open_time, close_time, owner_id) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("CALL AddBranch(?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssssi", $name, $location, $contact, $open, $close, $owner_id);
     $stmt->execute();
+
 
     header("Location: branch_list.php?added=1");
     exit;
