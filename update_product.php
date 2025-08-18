@@ -14,9 +14,11 @@ $category_id = $_POST['category_id'];
 $warranty = $_POST['warranty_months'];
 $description = $_POST['description'];
 
-$stmt = $conn->prepare("UPDATE product SET name=?, brand=?, model=?, price=?, stock=?, category_id=?, warranty_months=?, description=? WHERE product_id=?");
-$stmt->bind_param("sssiiiisi", $name, $brand, $model, $price, $stock, $category_id, $warranty, $description, $product_id);
+$stmt = $conn->prepare("CALL UpdateProduct(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("sssiiiisi", $product_id, $name, $brand, $model, $price, $stock, $category_id, $warranty, $description);
 $stmt->execute();
+$stmt->close();
 
 header("Location: manage_products.php");
+
 ?>

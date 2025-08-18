@@ -15,11 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $branch_id = $_POST['branch_id'];
     $hire_date = $_POST['hire_date'];
 
-    $stmt = $conn->prepare("UPDATE manager SET name=?, email=?, phone=?, branch_id=?, hire_date=? WHERE manager_id=?");
-    $stmt->bind_param("sssisi", $name, $email, $phone, $branch_id, $hire_date, $id);
+    $stmt = $conn->prepare("CALL UpdateManager(?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("isssis", $id, $name, $email, $phone, $branch_id, $hire_date);
     $stmt->execute();
+    $stmt->close();
 
     header("Location: manager_list.php?updated=1");
+
     exit;
 }
 ?>

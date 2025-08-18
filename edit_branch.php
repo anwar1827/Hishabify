@@ -4,7 +4,7 @@ $required_role = 'owner';
 require_once("includes/role_guard.php");
 require_once("db.php");
 
-$branch_id = $_GET['id'] ?? 0;
+$branch_id = intval($_GET['id'] ?? 0);
 
 // Fetch current branch
 $branch = $conn->query("SELECT * FROM branch WHERE branch_id = $branch_id")->fetch_assoc();
@@ -17,14 +17,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $open = $_POST['open_time'];
     $close = $_POST['close_time'];
 
-    $stmt = $conn->prepare("UPDATE branch SET branch_name=?, location=?, contact_number=?, open_time=?, close_time=? WHERE branch_id=?");
-    $stmt->bind_param("sssssi", $name, $location, $contact, $open, $close, $branch_id);
+    $stmt = $conn->prepare("CALL UpdateBranch(?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("isssss", $branch_id, $name, $location, $contact, $open, $close);
     $stmt->execute();
+    $stmt->close();
 
     header("Location: branch_list.php?updated=1");
     exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>

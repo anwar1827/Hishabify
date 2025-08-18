@@ -21,11 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $branch_id = $result->fetch_assoc()['branch_id'];
 
 
-    $insert = $conn->prepare("INSERT INTO employee (name, designation, nid, phone, join_date, total_sales, branch_id, manager_id)
-                              VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $insert = $conn->prepare("CALL AddEmployee(?, ?, ?, ?, ?, ?, ?, ?)");
     $insert->bind_param("sssssiii", $name, $designation, $nid, $phone, $join_date, $total_sales, $branch_id, $manager_id);
 
+
+
     if ($insert->execute()) {
+        $insert->close();
         header("Location: manage_employees.php?msg=success");
         exit;
     } else {

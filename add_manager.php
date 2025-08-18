@@ -8,14 +8,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name   = $_POST['name'];
     $email  = $_POST['email'];
     $phone  = $_POST['phone'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);//bcrypt
     $branch_id = $_POST['branch_id'];
     $hire_date = $_POST['hire_date'];
 
-    $stmt = $conn->prepare("INSERT INTO manager (name, email, phone, password, branch_id, hire_date)
-                            VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssis", $name, $email, $phone, $password, $branch_id, $hire_date);
+    $stmt = $conn->prepare("CALL add_manager(?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssss", $name, $email, $phone, $password, $branch_id, $hire_date);
     $stmt->execute();
+
 
     header("Location: manager_list.php?added=1");
     exit;

@@ -26,10 +26,13 @@ if ($result->num_rows === 1) {
         $_SESSION['user_name'] = $user['name'];
         $_SESSION['last_activity'] = time(); // For timeout
 
-        // Log login
         $ip = $_SERVER['REMOTE_ADDR'];
         $uid = $_SESSION['user_id'];
-        $conn->query("INSERT INTO login_log (user_type, user_id, ip_address) VALUES ('$user_type', $uid, '$ip')");
+
+        $stmt = $conn->prepare("CALL AddLoginLog(?, ?, ?)");
+        $stmt->bind_param("sis", $user_type, $uid, $ip);
+        $stmt->execute();
+
 
         // Redirect
         header("Location: {$user_type}_dashboard.php");

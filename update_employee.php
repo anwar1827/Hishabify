@@ -11,10 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nid = trim($_POST['nid']);
     $phone = trim($_POST['phone']);
 
-    $stmt = $conn->prepare("UPDATE employee SET name=?, designation=?, nid=?, phone=? WHERE employee_id=?");
-    $stmt->bind_param("ssssi", $name, $designation, $nid, $phone, $id);
+    $stmt = $conn->prepare("CALL UpdateEmployee(?, ?, ?, ?, ?)");
+    $stmt->bind_param("issss", $id, $name, $designation, $nid, $phone);
+    
 
     if ($stmt->execute()) {
+        $stmt->close();
         header("Location: manage_employees.php?msg=updated");
     } else {
         echo "❌ Error updating employee.";
